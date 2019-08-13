@@ -1,0 +1,103 @@
+openapi: "3.0.0"
+info:
+  title: Timedate
+  version: "0.01"
+servers:
+  - url: http://localhost:1771
+paths:
+  /timedate:
+    get:
+      summary: Print time and date
+      description: Print time and date by timedatectl
+      operationId: app.get_timedate
+      responses:
+        200:
+          description: All good
+          content:
+            text/plain:
+              schema:
+                type: string
+  /timezone:
+    get:
+      summary: Print timezones
+      description: Print timezones by timedatectl
+      operationId: app.get_timezone
+      responses:
+        200:
+          description: All good
+          content:
+            text/plain:
+              schema:
+                type: string
+  /zone/set:
+    post:
+      summary: set timezone
+      description: set timezone by timedatectl
+      operationId: app.post_zone
+      parameters:
+        - name: zone
+          in: query
+          schema:
+            type: string
+            pattern: '([A-Z][a-z]+/[A-Z].+)|[U][T][C]' 
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /time/set:
+    post:
+      summary: set time
+      description: set time by timedatectl
+      operationId: app.post_time
+      parameters:
+        - name: time
+          in: query
+          schema:
+            type: string
+            pattern: '[0-2][0-9]:[0-5][0-9]:[0-5][0-9]' 
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /date/set:
+    post:
+      summary: set date
+      description: set date by timedatectl
+      operationId: app.post_date
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            pattern: '([0-9][0-9]|\d{4})-(0[1-9]|1[0-2])-((0|1|2)[0-9]|3[0-1])' 
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /ntp/set:
+    post:
+      summary: set ntp
+      description: set ntp in timedatectl
+      operationId: app.post_ntp
+      parameters:
+        - name: ntp
+          in: query
+          schema:
+            type: string
+            pattern: '[0-1]'
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string

@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+UNIT=timetest
+
+echo -n "Stopping $UNIT... "
+/bin/systemctl stop $UNIT >/dev/null 2>&1 || {
+	echo "FAILED"
+	exit 1
+}
+echo "Ok"
+
+echo -n "Disabling $UNIT... "
+/bin/systemctl disable $UNIT >/dev/null 2>&1 || {
+	echo "FAILED"
+	exit 1
+}
+echo "Ok"
+
+exit 0

@@ -1,0 +1,9 @@
+Package: timetest
+Version: 0.01
+Depends: systemd
+Architecture: amd64
+Maintainer: pcrew
+Section: main/net
+Priority: optional
+Description: timedatectl and connexion based time menegement
+ timedatectl and connexion based time menegement

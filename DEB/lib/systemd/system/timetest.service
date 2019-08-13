@@ -1,0 +1,12 @@
+[Unit]
+Description=timedatectl based time management
+
+[Service]
+Type=simple
+ExecStart=/opt/timetest/app.py
+ExecStop=/bin/kill -15 $MAINPID
+Nice=0
+
+[Install]
+Alias=timetest.service
+WantedBy=default.target
